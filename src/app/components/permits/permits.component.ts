@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OdpContext } from '../../models/edmonton-open-data/odp-context';
-import { map } from 'rxjs/operators'
+import { map, tap } from 'rxjs/operators'
 import { OdpToPermitService } from 'src/app/services/permit/odp-to-permit-service';
 import { Permit } from 'src/app/models/permit/permit';
 import { combineLatest } from 'rxjs';
@@ -23,21 +23,16 @@ export class PermitsComponent implements OnInit {
 
   getPermits(): void {
     combineLatest(
-      this.context.developmentPermits
-        .getAll()
-        .pipe(
-          map(allPermits => 
-            allPermits.map(permit => this.permitService.FromDevelopmentPermit(permit)))
-          ),
-      this.context.buildingPermits
-        .getAll()
-        .pipe(
-          map(allPermits => 
-            allPermits.map(permit => this.permitService.FromBuildingPermit(permit)))
-          )
+      this.context.developmentPermits.getAll(),
+      this.context.buildingPermits.getAll()
     )
     .pipe(
-      map(([dps, bps]) => dps.concat(bps))
+      map(([dps, bps]) => [
+        dps.map(permit => this.permitService.FromDevelopmentPermit(permit)),
+        bps.map(permit => this.permitService.FromBuildingPermit(permit))
+      ]),
+      map(([dps, bps]) => dps.concat(bps)),
+      tap<Permit[]>(permits => permits.sort((a, b) => a.Date.getTime() - b.Date.getTime()))
     )
     .subscribe(permits => this.Permits = permits);
   }
