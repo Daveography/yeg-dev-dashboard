@@ -1,0 +1,6 @@
+<div fxLayout="row" fxLayoutAlign="space-between" *ngFor="let permit of Permits">
+  <div>{{(Permits.indexOf(permit) + 1).toString()}}</div>
+  <mat-icon>place</mat-icon>
+  <div>{{permit.Date | date:'shortDate'}}</div>
+  <div>{{permit.Description}}</div>
+</div>
