@@ -1,5 +1,15 @@
 {
   "files.exclude": {
     "**/*.css": true
-  }
+  },
+  "jasmineExplorer.env": {
+    "TS_NODE_COMPILER_OPTIONS": "{\"module\":\"commonjs\"}"
+  },
+  "jasmineExplorer.jasminePath": "node_modules/jasmine",
+  "jasmineExplorer.nodeArgv": [
+    "--require",
+    "ts-node/register",
+    "--require",
+    "tsconfig-paths/register"
+  ],
 }

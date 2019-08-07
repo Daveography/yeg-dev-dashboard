@@ -1,8 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
-import { AppNavMenuComponent } from './components/app-nav-menu/app-nav-menu.component';
-import { MaterialModule } from './material.module';
+import { AppComponent } from '../../app/app.component';
+import { AppNavMenuComponent } from '../../app/components/app-nav-menu/app-nav-menu.component';
+import { MaterialModule } from '../../app/material.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
