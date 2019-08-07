@@ -4,11 +4,12 @@ import { PermitAddress } from './permit-address';
 import { PermitNeighbourhood } from './permit-neighbourhood';
 import { Position } from 'src/app/models/common/geo/position';
 import { PermitDescription } from './permit-description';
-import { PermitType } from './permit-type';
+import { PermitSubtype } from './permit-subtype';
 import { PermitClass } from './permit-class';
 import { PermitCategory } from './permit-category';
 import { PermitStatus } from './permit-status';
 import { PermitValue } from './permit-value';
+import { PermitType } from './permit-type';
 
 export class Permit {
   readonly Id: PermitId;
@@ -19,6 +20,7 @@ export class Permit {
   readonly Neighbourhood: PermitNeighbourhood;
   readonly Description: PermitDescription;
   readonly Type: PermitType;
+  readonly Subtype: PermitSubtype;
   readonly Class: PermitClass;
   readonly Category: PermitCategory;
   readonly Status: PermitStatus;
@@ -32,6 +34,7 @@ export class Permit {
     private _neighbourhood: PermitNeighbourhood,
     private _description: PermitDescription,
     private _type: PermitType,
+    private _subtype: PermitSubtype,
     private _class: PermitClass,
     private _category: PermitCategory,
     private _status: PermitStatus,
@@ -69,6 +72,10 @@ export class Permit {
         throw new Error('Type must be provided');
       }
 
+      if (!_subtype) {
+        throw new Error('Subtype must be provided');
+      }
+
       if (!_class) {
         throw new Error('Class must be provided');
       }
@@ -93,6 +100,7 @@ export class Permit {
       this.Neighbourhood = _neighbourhood;
       this.Description = _description;
       this.Type = _type;
+      this.Subtype = _subtype;
       this.Class = _class;
       this.Category = _category;
       this.Status = _status;

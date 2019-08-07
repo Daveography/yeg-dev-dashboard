@@ -11,6 +11,7 @@ import { PermitStatus } from 'src/app/models/permit/permit-status';
 import { PermitValue } from 'src/app/models/permit/permit-value';
 import { Position } from 'src/app/models/common/geo/position';
 import { PermitAddress } from 'src/app/models/permit/permit-address';
+import { PermitSubtype } from 'src/app/models/permit/permit-subtype';
 import { PermitType } from 'src/app/models/permit/permit-type';
 
 describe('Permit', () => {
@@ -28,7 +29,8 @@ describe('Permit', () => {
       new PermitAddress('12738 - 128 STREET NW'),
       new PermitNeighbourhood('West Jasper Place'),
       new PermitDescription(description),
-      new PermitType('Major Development Permit'),
+      PermitType.DevelopmentPermit,
+      new PermitSubtype('Major Development Permit'),
       new PermitClass('Class A'),
       new PermitCategory('Single, Semi-detached & Rowhousing'),
       new PermitStatus('Issued'),
@@ -50,7 +52,8 @@ describe('Permit', () => {
         new PermitAddress('12738 - 128 STREET NW'),
         new PermitNeighbourhood('West Jasper Place'),
         new PermitDescription('To convert a portion of the existing General Industrial Use to Liquor Store and to construct interior alterations (Branch of the Willow alcohol storage and distribution warehouse with accessory retail).'),
-        new PermitType('Major Development Permit'),
+        PermitType.DevelopmentPermit,
+        new PermitSubtype('Major Development Permit'),
         new PermitClass('Class A'),
         new PermitCategory('Single, Semi-detached & Rowhousing'),
         new PermitStatus('Issued'),
@@ -72,7 +75,8 @@ describe('Permit', () => {
         new PermitAddress('12738 - 128 STREET NW'),
         new PermitNeighbourhood('West Jasper Place'),
         new PermitDescription('To convert a portion of the existing General Industrial Use to Liquor Store and to construct interior alterations (Branch of the Willow alcohol storage and distribution warehouse with accessory retail).'),
-        new PermitType('Major Development Permit'),
+        PermitType.DevelopmentPermit,
+        new PermitSubtype('Major Development Permit'),
         new PermitClass('Class A'),
         new PermitCategory('Single, Semi-detached & Rowhousing'),
         new PermitStatus('Issued'),
@@ -91,7 +95,8 @@ describe('Permit', () => {
         new PermitAddress('12738 - 128 STREET NW'),
         new PermitNeighbourhood('West Jasper Place'),
         new PermitDescription('To convert a portion of the existing General Industrial Use to Liquor Store and to construct interior alterations (Branch of the Willow alcohol storage and distribution warehouse with accessory retail).'),
-        new PermitType('Major Development Permit'),
+        PermitType.DevelopmentPermit,
+        new PermitSubtype('Major Development Permit'),
         new PermitClass('Class A'),
         new PermitCategory('Single, Semi-detached & Rowhousing'),
         new PermitStatus('Issued'),
@@ -113,7 +118,8 @@ describe('Permit', () => {
         new PermitAddress('12738 - 128 STREET NW'),
         new PermitNeighbourhood('West Jasper Place'),
         new PermitDescription('To convert a portion of the existing General Industrial Use to Liquor Store and to construct interior alterations (Branch of the Willow alcohol storage and distribution warehouse with accessory retail).'),
-        new PermitType('Major Development Permit'),
+        PermitType.DevelopmentPermit,
+        new PermitSubtype('Major Development Permit'),
         new PermitClass('Class A'),
         new PermitCategory('Single, Semi-detached & Rowhousing'),
         new PermitStatus('Issued'),
@@ -135,7 +141,8 @@ describe('Permit', () => {
         null,
         new PermitNeighbourhood('West Jasper Place'),
         new PermitDescription('To convert a portion of the existing General Industrial Use to Liquor Store and to construct interior alterations (Branch of the Willow alcohol storage and distribution warehouse with accessory retail).'),
-        new PermitType('Major Development Permit'),
+        PermitType.DevelopmentPermit,
+        new PermitSubtype('Major Development Permit'),
         new PermitClass('Class A'),
         new PermitCategory('Single, Semi-detached & Rowhousing'),
         new PermitStatus('Issued'),
@@ -157,7 +164,8 @@ describe('Permit', () => {
         new PermitAddress('12738 - 128 STREET NW'),
         null,
         new PermitDescription('To convert a portion of the existing General Industrial Use to Liquor Store and to construct interior alterations (Branch of the Willow alcohol storage and distribution warehouse with accessory retail).'),
-        new PermitType('Major Development Permit'),
+        PermitType.DevelopmentPermit,
+        new PermitSubtype('Major Development Permit'),
         new PermitClass('Class A'),
         new PermitCategory('Single, Semi-detached & Rowhousing'),
         new PermitStatus('Issued'),
@@ -179,7 +187,8 @@ describe('Permit', () => {
         new PermitAddress('12738 - 128 STREET NW'),
         new PermitNeighbourhood('West Jasper Place'),
         null,
-        new PermitType('Major Development Permit'),
+        PermitType.DevelopmentPermit,
+        new PermitSubtype('Major Development Permit'),
         new PermitClass('Class A'),
         new PermitCategory('Single, Semi-detached & Rowhousing'),
         new PermitStatus('Issued'),
@@ -202,6 +211,30 @@ describe('Permit', () => {
         new PermitNeighbourhood('West Jasper Place'),
         new PermitDescription('To convert a portion of the existing General Industrial Use to Liquor Store and to construct interior alterations (Branch of the Willow alcohol storage and distribution warehouse with accessory retail).'),
         null,
+        new PermitSubtype('Major Development Permit'),
+        new PermitClass('Class A'),
+        new PermitCategory('Single, Semi-detached & Rowhousing'),
+        new PermitStatus('Issued'),
+        new PermitValue(5000000))
+    };
+    expect(createFunc).toThrow();
+  });
+
+  it('should throw on null subtype', () => {
+    let createFunc = function () {
+      new Permit(
+        new PermitId('5-384573727483'),
+        new Date('2019-07-02'),
+        new Position(
+          new Latitude(53.545511),
+          new Longitude(-113.515452)
+        ),
+        new PermitZoning('AED'),
+        new PermitAddress('12738 - 128 STREET NW'),
+        new PermitNeighbourhood('West Jasper Place'),
+        new PermitDescription('To convert a portion of the existing General Industrial Use to Liquor Store and to construct interior alterations (Branch of the Willow alcohol storage and distribution warehouse with accessory retail).'),
+        PermitType.DevelopmentPermit,
+        null,
         new PermitClass('Class A'),
         new PermitCategory('Single, Semi-detached & Rowhousing'),
         new PermitStatus('Issued'),
@@ -223,7 +256,8 @@ describe('Permit', () => {
         new PermitAddress('12738 - 128 STREET NW'),
         new PermitNeighbourhood('West Jasper Place'),
         new PermitDescription('To convert a portion of the existing General Industrial Use to Liquor Store and to construct interior alterations (Branch of the Willow alcohol storage and distribution warehouse with accessory retail).'),
-        new PermitType('Major Development Permit'),
+        PermitType.DevelopmentPermit,
+        new PermitSubtype('Major Development Permit'),
         null,
         new PermitCategory('Single, Semi-detached & Rowhousing'),
         new PermitStatus('Issued'),
@@ -245,7 +279,8 @@ describe('Permit', () => {
         new PermitAddress('12738 - 128 STREET NW'),
         new PermitNeighbourhood('West Jasper Place'),
         new PermitDescription('To convert a portion of the existing General Industrial Use to Liquor Store and to construct interior alterations (Branch of the Willow alcohol storage and distribution warehouse with accessory retail).'),
-        new PermitType('Major Development Permit'),
+        PermitType.DevelopmentPermit,
+        new PermitSubtype('Major Development Permit'),
         new PermitClass('Class A'),
         null,
         new PermitStatus('Issued'),
@@ -267,7 +302,8 @@ describe('Permit', () => {
         new PermitAddress('12738 - 128 STREET NW'),
         new PermitNeighbourhood('West Jasper Place'),
         new PermitDescription('To convert a portion of the existing General Industrial Use to Liquor Store and to construct interior alterations (Branch of the Willow alcohol storage and distribution warehouse with accessory retail).'),
-        new PermitType('Major Development Permit'),
+        PermitType.DevelopmentPermit,
+        new PermitSubtype('Major Development Permit'),
         new PermitClass('Class A'),
         new PermitCategory('Single, Semi-detached & Rowhousing'),
         null,
@@ -289,7 +325,8 @@ describe('Permit', () => {
         new PermitAddress('12738 - 128 STREET NW'),
         new PermitNeighbourhood('West Jasper Place'),
         new PermitDescription('To convert a portion of the existing General Industrial Use to Liquor Store and to construct interior alterations (Branch of the Willow alcohol storage and distribution warehouse with accessory retail).'),
-        new PermitType('Major Development Permit'),
+        PermitType.DevelopmentPermit,
+        new PermitSubtype('Major Development Permit'),
         new PermitClass('Class A'),
         new PermitCategory('Single, Semi-detached & Rowhousing'),
         new PermitStatus('Issued'),
