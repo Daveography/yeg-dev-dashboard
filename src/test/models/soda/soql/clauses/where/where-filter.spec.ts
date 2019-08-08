@@ -17,7 +17,7 @@ describe('Where Filters', () => {
   it('should create greater than where filter', () => {
     let filterObj = new WhereFilter(
       new Column('col1'),
-      Comparitor.GreatherThan,
+      Comparitor.GreaterThan,
       new WhereStringValue('3.0')
     );
     expect(filterObj.toString()).toEqual("col1 > '3.0'");

@@ -1,5 +1,3 @@
-import { IClause } from "../clause";
-import { IWhereComponent } from "./where-component";
 import { WhereGroup } from "./where-group";
 
 export class WhereClause extends WhereGroup {

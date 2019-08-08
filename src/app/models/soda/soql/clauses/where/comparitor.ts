@@ -1,6 +1,6 @@
 export enum Comparitor {
   Equals = '=',
-  GreatherThan = '>',
+  GreaterThan = '>',
   LessThan = '<',
   IsNull = 'IS NULL',
   IsNotNull = 'IS NOT NULL'
