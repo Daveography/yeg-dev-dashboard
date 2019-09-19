@@ -1,10 +1,10 @@
-import { PermitZoning } from "src/app/models/permit/permit-zoning";
+import { PermitZoning } from 'src/app/models/permit/permit-zoning';
 
 describe('PermitZoning', () => {
 
   it('should create permit zone with valid value', () => {
-    let zoneValue = 'DC2';
-    let zoneObj = new PermitZoning(zoneValue);
+    const zoneValue = 'DC2';
+    const zoneObj = new PermitZoning(zoneValue);
     expect(zoneObj.toString()).toEqual(zoneValue);
   });
 

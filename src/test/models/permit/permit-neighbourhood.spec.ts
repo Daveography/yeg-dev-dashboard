@@ -1,10 +1,10 @@
-import { PermitNeighbourhood } from "src/app/models/permit/permit-neighbourhood";
+import { PermitNeighbourhood } from 'src/app/models/permit/permit-neighbourhood';
 
 describe('PermitNeighbourhood', () => {
 
   it('should create permit neighbourhood with valid value', () => {
-    let nbhdValue = 'King Edward Park';
-    let nbhdObj = new PermitNeighbourhood(nbhdValue);
+    const nbhdValue = 'King Edward Park';
+    const nbhdObj = new PermitNeighbourhood(nbhdValue);
     expect(nbhdObj.toString()).toEqual(nbhdValue);
   });
 

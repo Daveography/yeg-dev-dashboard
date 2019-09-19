@@ -1,10 +1,10 @@
-import { PermitAddress } from "src/app/models/permit/permit-address";
+import { PermitAddress } from 'src/app/models/permit/permit-address';
 
 describe('PermitAddress', () => {
 
   it('should create permit address with valid value', () => {
-    let addrValue = '123 mylane nw';
-    let addrObj = new PermitAddress(addrValue);
+    const addrValue = '123 mylane nw';
+    const addrObj = new PermitAddress(addrValue);
     expect(addrObj.toString()).toEqual(addrValue);
   });
 
