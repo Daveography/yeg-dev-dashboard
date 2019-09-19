@@ -1,11 +1,7 @@
-import { SodaContext } from "../soda/soda-context";
-import { DevelopmentPermit } from "./development-permit";
-import { BuildingPermit } from "./building-permit";
-import { Injectable } from "@angular/core";
-import { SodaResource } from "../soda/soda-resource";
-import { SodaHost } from "../soda/soda-host";
-import { SodaResourceId } from "../soda/soda-resource-id";
-import { SodaClient } from "../soda/soda-client";
+import { SodaContext, SodaResource, SodaHost, SodaResourceId, SodaClient } from 'soda-angular';
+import { DevelopmentPermit } from './development-permit';
+import { BuildingPermit } from './building-permit';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
