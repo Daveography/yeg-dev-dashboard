@@ -1,6 +1,26 @@
 {
-  "name": "edmonton-development-dashboard",
-  "version": "0.0.0",
+  "name": "yeg-dev-dashboard",
+  "version": "0.0.1",
+  "description": "Dashboard for monitoring development projects in Edmonton, Alberta, Canada",
+  "author": {
+    "name": "Dave Sutherland",
+    "email": "dave@daveography.ca",
+    "url": "https://github.com/Daveography"
+  },
+  "homepage": "https://github.com/Daveography/yeg-dev-dashboard",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Daveography/yeg-dev-dashboard.git"
+  },
+  "keywords": [
+    "yeg",
+    "Edmonton",
+    "open data",
+    "development",
+    "permits",
+    "real estate"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
