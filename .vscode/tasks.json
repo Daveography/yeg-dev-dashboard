@@ -4,20 +4,6 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "gulp",
-      "task": "default",
-      "runOptions": {
-        "runOn": "folderOpen"
-      },
-      "problemMatcher": [
-        "$lessc"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
-    },
-    {
       "type": "npm",
       "script": "start",
       "isBackground": true,
@@ -53,11 +39,6 @@
       "type": "npm",
       "script": "test",
       "isBackground": true,
-      "problemMatcher": []
-    },
-    {
-      "type": "gulp",
-      "task": "less",
       "problemMatcher": []
     }
   ]

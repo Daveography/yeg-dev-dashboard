@@ -8,7 +8,7 @@ import { combineLatest } from 'rxjs';
 @Component({
   selector: 'permits',
   templateUrl: './permits.component.html',
-  styleUrls: ['./permits.component.css']
+  styleUrls: ['./permits.component.scss']
 })
 export class PermitsComponent implements OnInit {
 
