@@ -1,10 +1,13 @@
-export class BuildingPermit {
+import { FloatingTimestamp } from 'soda-angular/datatypes';
+
+// tslint:disable: variable-name
+export interface BuildingPermit {
   row_id: string;
-  issue_date: Date;
+  issue_date: FloatingTimestamp;
   permit_number: string;
   year: number;
   month_number: number;
-  permit_date: Date;
+  permit_date: FloatingTimestamp;
   job_category: string;
   address: string;
   legal_description: string;

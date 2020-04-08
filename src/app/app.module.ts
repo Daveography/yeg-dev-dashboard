@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { SodaClientModule } from 'soda-angular';
 
 import { AppComponent } from './app.component';
 import { AppNavMenuComponent } from './components/app-nav-menu/app-nav-menu.component';
@@ -25,8 +24,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AppRoutingModule,
     MaterialModule,
     PermitsModule,
-    FlexLayoutModule,
-    SodaClientModule.forRoot()
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

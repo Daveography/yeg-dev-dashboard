@@ -1,8 +1,11 @@
-export class DevelopmentPermit {
+import { FloatingTimestamp } from 'soda-angular/datatypes';
+
+// tslint:disable: variable-name
+export interface DevelopmentPermit {
   city_file_number: string;
   permit_type: string;
   permit_class: string;
-  permit_date: Date;
+  permit_date: FloatingTimestamp;
   status: string;
   description_of_development: string;
   address: string;
