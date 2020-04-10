@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { combineLatest } from 'rxjs';
-import { flatMap, tap } from 'rxjs/operators';
+import { merge } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { FloatingTimestamp } from 'soda-angular/datatypes';
 import { Permit } from 'src/app/models/permit/permit';
 import { OdpToPermitService } from 'src/app/services/permit/odp-to-permit-service';
 import { OdpContext } from '../../models/edmonton-open-data/odp-context';
-import { FloatingTimestamp } from 'soda-angular/datatypes';
 
 @Component({
   selector: 'permits',
@@ -29,22 +29,26 @@ export class PermitsComponent implements OnInit {
   getPermits(): void {
     const lastWeek = this.DaysAgo(7);
 
-    combineLatest(
+    merge(
       this.context.developmentPermits
         .where(p => p.permit_type).equals('Major Development Permit')
         .where(p => p.permit_date).greaterThan(lastWeek)
-        .limit(20).observable(),
+        .limit(20)
+        .observable()
+        .pipe(
+          map(dps => dps.map(permit => this.permitService.FromDevelopmentPermit(permit)))
+        ),
       this.context.buildingPermits
         .where(p => p.construction_value).greaterThan(2000000)
         .where(p => p.permit_date).greaterThan(lastWeek)
-        .limit(20).observable()
+        .limit(20)
+        .observable()
+        .pipe(
+          map(dps => dps.map(permit => this.permitService.FromBuildingPermit(permit))
+        )
     )
     .pipe(
-      flatMap(([dps, bps]) => [
-        dps.map(permit => this.permitService.FromDevelopmentPermit(permit)),
-        bps.map(permit => this.permitService.FromBuildingPermit(permit))
-      ]),
-      tap(permits => permits.sort((a, b) => a.Date.getTime() - b.Date.getTime()))
+      tap(permits => permits.sort((a, b) => a.Date.getTime() - b.Date.getTime())))
     )
     .subscribe(permits => this.Permits = permits);
   }
