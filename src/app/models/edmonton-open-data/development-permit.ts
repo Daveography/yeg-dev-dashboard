@@ -1,4 +1,4 @@
-import { FloatingTimestamp } from 'soda-angular/datatypes';
+import { FloatingTimestamp, Location } from 'soda-angular/datatypes';
 
 // tslint:disable: variable-name
 export interface DevelopmentPermit {
@@ -18,5 +18,5 @@ export interface DevelopmentPermit {
   land_parcel_count: number;
   latitude: number;
   longitude: number;
-  location: string;
+  location: Location;
 }

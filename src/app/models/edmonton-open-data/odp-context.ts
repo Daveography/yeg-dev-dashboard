@@ -6,13 +6,15 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
+@SodaHost('https://data.edmonton.ca/')
 export class OdpContext extends SodaContext {
   public readonly developmentPermits: SodaResource<DevelopmentPermit>;
   public readonly buildingPermits: SodaResource<BuildingPermit>;
 
-  constructor(private sodaClient: SodaClient) {
+  constructor(sodaClient: SodaClient) {
+    super();
+
     // Hardcode for now; will make this more elegant later
-    super(new SodaHost('https://data.edmonton.ca/'));
     this.developmentPermits = new SodaResource<DevelopmentPermit>(new SodaResourceId('8b78-2kux'), this, sodaClient);
     this.buildingPermits = new SodaResource<BuildingPermit>(new SodaResourceId('rwuh-apwg'), this, sodaClient);
   }
