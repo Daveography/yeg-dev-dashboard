@@ -3,7 +3,7 @@ import { Permit } from 'src/app/models/permit/permit';
 import { MapOptions, tileLayer, latLng } from 'leaflet';
 
 @Component({
-  selector: 'permits-map',
+  selector: 'app-permits-map',
   templateUrl: './permits-map.component.html',
   styleUrls: ['./permits-map.component.scss']
 })

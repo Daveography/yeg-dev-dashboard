@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SodaClientModule } from 'soda-angular';
 
 import { AppComponent } from './app.component';
-import { AppNavMenuComponent } from './components/app-nav-menu/app-nav-menu.component';
+import { AppNavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { HomeComponent } from './components/home/home.component';
 import { MaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';

@@ -1,10 +1,10 @@
 <div fxLayout="row" fxLayoutAlign="space-between">
   <div fxFlex="25" scrollable>
     <div fxLayout="column" fxLayoutAlign="space-between">
-      <permits-summary [Permits]="Permits"></permits-summary>
+      <app-permits-summary [Permits]="Permits"></app-permits-summary>
     </div>
   </div>
   <div fxFlex="75">
-    <permits-map *ngIf="Permits" [Permits]="Permits"></permits-map>
+    <app-permits-map *ngIf="Permits" [Permits]="Permits"></app-permits-map>
   </div>
 </div>

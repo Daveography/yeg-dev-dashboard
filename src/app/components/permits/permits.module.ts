@@ -5,7 +5,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MaterialModule } from '../../material.module';
 import { PermitDetailComponent } from './detail/permit-detail.component';
 import { PermitsMapComponent } from './map/permits-map.component';
-import { MapMarkerComponent } from './map/marker/app-map-marker.component';
+import { MapMarkerComponent } from './map/marker/map-marker.component';
 import { PermitsComponent } from './permits.component';
 import { PermitsSummaryComponent } from './summary/permits-summary.component';
 

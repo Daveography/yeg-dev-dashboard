@@ -8,7 +8,7 @@ import { OdpToPermitService } from 'src/app/services/permit/odp-to-permit-servic
 import { OdpContext } from '../../models/edmonton-open-data/odp-context';
 
 @Component({
-  selector: 'permits',
+  selector: 'app-permits',
   templateUrl: './permits.component.html',
   styleUrls: ['./permits.component.scss']
 })

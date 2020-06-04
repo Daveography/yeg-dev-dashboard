@@ -3,8 +3,8 @@ import { icon, latLng, Layer, marker } from 'leaflet';
 
 @Component({
   selector: 'app-map-marker',
-  templateUrl: './app-map-marker.component.html',
-  styleUrls: ['./app-map-marker.component.scss']
+  templateUrl: './map-marker.component.html',
+  styleUrls: ['./map-marker.component.scss']
 })
 export class MapMarkerComponent implements OnInit {
     @Input() Latitude: number;
