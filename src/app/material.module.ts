@@ -1,6 +1,6 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule, MatGridListModule, MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MatExpansionModule, MatFormFieldModule, MatSelectModule, MatChipsModule, MatDialogModule, MatDividerModule, MatInputModule, MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material';
 import { NgModule } from '@angular/core';
+import { MatButtonModule, MatCardModule, MatChipsModule, MatDialogModule, MatDividerModule, MatExpansionModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule, MatListModule, MatSelectModule, MatSidenavModule, MatTableModule, MatToolbarModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   exports: [
@@ -18,6 +18,7 @@ import { NgModule } from '@angular/core';
     MatListModule,
     MatSelectModule,
     MatSidenavModule,
+    MatTableModule,
     MatToolbarModule
   ],
 })

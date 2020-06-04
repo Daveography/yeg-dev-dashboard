@@ -7,6 +7,7 @@ import { Permit } from 'src/app/models/permit/permit';
 })
 export class PermitsSummaryComponent {
     @Input() Permits: Permit[];
+    DisplayColumns: string[] = [ 'Date', 'Type', 'Description' ];
 
     constructor() { }
 }
