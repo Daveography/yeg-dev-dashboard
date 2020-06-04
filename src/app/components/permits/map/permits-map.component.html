@@ -1,17 +1,11 @@
 <div fxFlex="grow">
-  <agm-map
-    [latitude]="MapLatitude"
-    [longitude]="MapLongitude"
-    [zoom]="8"
-    [fitBounds]="true">
-    <agm-marker *ngFor="let permit of Permits"
-      [latitude]="permit.Position.Latitude.Degrees"
-      [longitude]="permit.Position.Longitude.Degrees"
-      [agmFitBounds]="true"
-      [label]="(Permits.indexOf(permit) + 1).toString()">
-      <agm-info-window>
-          <permit-detail [Permit]="permit"></permit-detail>
-      </agm-info-window>
-    </agm-marker>
-  </agm-map>
+  <div style="height: 300px;"
+     leaflet 
+     [leafletOptions]="LeafletOptions">
+     <app-map-marker *ngFor="let permit of Permits"
+      [Latitude]="permit.Position.Latitude.Degrees"
+      [Longitude]="permit.Position.Longitude.Degrees"
+      [Title]="(Permits.indexOf(permit) + 1).toString()">
+     </app-map-marker>
+  </div>
 </div>

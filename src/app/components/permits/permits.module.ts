@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
-import { PermitsComponent } from './permits.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MaterialModule } from '../../material.module';
 import { PermitDetailComponent } from './detail/permit-detail.component';
 import { PermitsMapComponent } from './map/permits-map.component';
-import { MaterialModule } from '../../material.module';
-import { FormsModule } from '@angular/forms';
-import { AgmCoreModule } from '@agm/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { MapMarkerComponent } from './map/marker/app-map-marker.component';
+import { PermitsComponent } from './permits.component';
 import { PermitsSummaryComponent } from './summary/permits-summary.component';
 
 @NgModule({
@@ -13,14 +14,13 @@ import { PermitsSummaryComponent } from './summary/permits-summary.component';
     PermitsComponent,
     PermitsSummaryComponent,
     PermitDetailComponent,
-    PermitsMapComponent
+    PermitsMapComponent,
+    MapMarkerComponent
   ],
   imports: [
     FormsModule,
     MaterialModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyC8azIrgR1cmtYlqzMVZt3dvKHSPGki8QU'
-    }),
+    LeafletModule,
     FlexLayoutModule
   ],
   entryComponents: []

@@ -1,16 +1,25 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Permit } from 'src/app/models/permit/permit';
+import { MapOptions, tileLayer, latLng } from 'leaflet';
 
 @Component({
   selector: 'permits-map',
   templateUrl: './permits-map.component.html',
   styleUrls: ['./permits-map.component.scss']
 })
-export class PermitsMapComponent {
+export class PermitsMapComponent implements OnInit {
     @Input() Permits: Permit[];
-
-    MapLatitude : number;
-    MapLongitude : number;
+    LeafletOptions: MapOptions;
 
     constructor() { }
+
+    ngOnInit() {
+      this.LeafletOptions = {
+        layers: [
+          tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+        ],
+        zoom: 10,
+        center: latLng(53.5446161, -113.486243)
+      };
+    }
 }
