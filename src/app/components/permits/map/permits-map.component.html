@@ -3,8 +3,8 @@
      leaflet 
      [leafletOptions]="LeafletOptions">
      <app-map-marker *ngFor="let permit of Permits"
-      [Latitude]="permit.Position.Latitude.Degrees"
-      [Longitude]="permit.Position.Longitude.Degrees"
+      [Latitude]="permit.Latitude"
+      [Longitude]="permit.Longitude"
       [Title]="(Permits.indexOf(permit) + 1).toString()">
      </app-map-marker>
   </div>
