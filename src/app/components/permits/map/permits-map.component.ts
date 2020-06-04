@@ -18,7 +18,7 @@ export class PermitsMapComponent implements OnInit {
         layers: [
           tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
         ],
-        zoom: 10,
+        zoom: 11,
         center: latLng(53.5446161, -113.486243)
       };
     }
