@@ -6,7 +6,6 @@ import { SodaClientModule } from 'soda-angular';
 
 import { AppComponent } from './app.component';
 import { AppNavMenuComponent } from './components/nav-menu/nav-menu.component';
-import { HomeComponent } from './components/home/home.component';
 import { MaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { PermitsModule } from './components/permits/permits.module';
@@ -15,8 +14,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [
     AppComponent,
-    AppNavMenuComponent,
-    HomeComponent
+    AppNavMenuComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
