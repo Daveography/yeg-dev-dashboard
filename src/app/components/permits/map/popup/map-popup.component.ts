@@ -2,10 +2,11 @@ import { Component, Input } from '@angular/core';
 import { Permit } from 'src/app/models/permit/permit';
 
 @Component({
-  selector: 'app-permit-detail',
-  templateUrl: './permit-detail.component.html'
+  selector: 'app-map-popup',
+  templateUrl: './map-popup.component.html',
+  styleUrls: ['./map-popup.component.scss']
 })
-export class PermitDetailComponent {
+export class MapPopupComponent {
     @Input() Permit: Permit;
 
     constructor() { }

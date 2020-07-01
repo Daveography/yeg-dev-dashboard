@@ -1,14 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Permit } from 'src/app/models/permit/permit';
 import { MapOptions, tileLayer, latLng } from 'leaflet';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-permits-map',
-  templateUrl: './permits-map.component.html',
-  styleUrls: ['./permits-map.component.scss']
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.scss']
 })
-export class PermitsMapComponent implements OnInit {
-    @Input() Permits: Permit[];
+export class MapComponent implements OnInit {
+    @Input() Permits: Observable<Permit[]>;
     LeafletOptions: MapOptions;
 
     constructor() { }

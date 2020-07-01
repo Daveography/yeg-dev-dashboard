@@ -1,0 +1,9 @@
+<div fxFlex="grow">
+  <div style="height: 600px;"
+     leaflet 
+     [leafletOptions]="LeafletOptions">
+     <app-map-marker *ngFor="let permit of Permits | async"
+      [Permit]="permit">
+     </app-map-marker>
+  </div>
+</div>
