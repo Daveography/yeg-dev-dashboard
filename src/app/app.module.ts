@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SodaClientModule } from 'soda-angular';
@@ -26,7 +26,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FlexLayoutModule,
     SodaClientModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'en-ca' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
