@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgElement, WithProperties } from '@angular/elements';
 import { icon, latLng, Layer, marker } from 'leaflet';
 import { Permit } from 'src/app/models/permit/permit';
-import { MapPopupComponent } from '../popup/map-popup.component';
+// import { MapPopupComponent } from '../popup/map-popup.component';
 
 @Component({
   selector: 'app-map-marker',
@@ -30,14 +30,14 @@ export class MapMarkerComponent implements OnInit {
          })
         }
       )
-      .bindPopup(layer => this.createPopup());
+      // .bindPopup(layer => this.createPopup());
     }
 
-    private createPopup(): NgElement {
-      const popupEl = document.createElement('popup-element') as NgElement & WithProperties<MapPopupComponent>;
-      popupEl.addEventListener('closed', () => document.body.removeChild(popupEl));
-      popupEl.Permit = this.Permit;
-      document.body.appendChild(popupEl);
-      return popupEl;
-    }
+    // private createPopup(): NgElement {
+    //   const popupEl = document.createElement('popup-element') as NgElement & WithProperties<MapPopupComponent>;
+    //   popupEl.addEventListener('closed', () => document.body.removeChild(popupEl));
+    //   popupEl.Permit = this.Permit;
+    //   document.body.appendChild(popupEl);
+    //   return popupEl;
+    // }
 }

@@ -5,13 +5,14 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MaterialModule } from '../../../material.module';
 import { MapComponent } from './map.component';
 import { MapMarkerComponent } from './marker/map-marker.component';
-import { MapPopupComponent } from './popup/map-popup.component';
+// import { MapPopupComponent } from './popup/map-popup.component';
+import { ReusableMapService } from './reusable-map/reusable-map.service';
 
 @NgModule({
   declarations: [
     MapComponent,
     MapMarkerComponent,
-    MapPopupComponent
+    // MapPopupComponent
   ],
   imports: [
     MaterialModule,
@@ -21,17 +22,19 @@ import { MapPopupComponent } from './popup/map-popup.component';
   exports: [
     MapComponent
   ],
+  providers: [
+    ReusableMapService
+  ],
   entryComponents: [
-    MapPopupComponent
   ]
 })
 export class MapModule {
-  constructor(private injector: Injector) {
-    this.registerMapPopupElement(injector);
-  }
+  // constructor(private injector: Injector) {
+  //   this.registerMapPopupElement(injector);
+  // }
 
-  private registerMapPopupElement(injector: Injector) {
-    const PopupElement = createCustomElement(MapPopupComponent, { injector });
-    customElements.define('popup-element', PopupElement);
-  }
+  // private registerMapPopupElement(injector: Injector) {
+  //   const PopupElement = createCustomElement(MapPopupComponent, { injector });
+  //   customElements.define('popup-element', PopupElement);
+  // }
 }

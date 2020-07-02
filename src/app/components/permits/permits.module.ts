@@ -5,11 +5,14 @@ import { MaterialModule } from '../../material.module';
 import { MapModule } from './map/map.module';
 import { PermitsComponent } from './permits.component';
 import { PermitsSummaryComponent } from './summary/permits-summary.component';
+import { PermitDetailComponent } from './detail/permit-detail.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
     PermitsComponent,
-    PermitsSummaryComponent
+    PermitsSummaryComponent,
+    PermitDetailComponent
   ],
   imports: [
     FormsModule,
@@ -17,6 +20,9 @@ import { PermitsSummaryComponent } from './summary/permits-summary.component';
     FlexLayoutModule,
     MapModule
   ],
-  entryComponents: [ ]
+  entryComponents: [
+    PermitDetailComponent,
+    MapComponent
+  ]
 })
 export class PermitsModule { }
