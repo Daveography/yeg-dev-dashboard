@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { Permit } from 'src/app/models/permit/permit';
-import { MapOptions, tileLayer, latLng, Map, Layer, marker, icon } from 'leaflet';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MultiPolygon } from 'geojson';
+import { geoJSON, icon, latLng, Layer, Map, MapOptions, marker, tileLayer } from 'leaflet';
+import { BehaviorSubject } from 'rxjs';
+import { EdmontonCentre } from 'src/app/models/edmonton-centre';
 
 @Component({
   selector: 'app-map',
@@ -12,11 +13,14 @@ export class MapComponent implements OnInit, OnDestroy {
     LeafletOptions: MapOptions;
     private map: Map;
     private markerLayer: Layer;
+    private shapeLayers: Layer[];
     private mapReadySubject = new BehaviorSubject<boolean>(false);
 
     public MapReady = this.mapReadySubject.asObservable();
 
-    constructor() { }
+    constructor() {
+      this.shapeLayers = new Array<Layer>();
+    }
 
     ngOnInit() {
       this.LeafletOptions = {
@@ -24,7 +28,7 @@ export class MapComponent implements OnInit, OnDestroy {
           tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
         ],
         zoom: 11,
-        center: latLng(53.5446161, -113.486243)
+        center: EdmontonCentre
       };
     }
 
@@ -59,5 +63,17 @@ export class MapComponent implements OnInit, OnDestroy {
       );
 
       this.map.addLayer(this.markerLayer);
+    }
+
+    setShapes(shapes: MultiPolygon[]) {
+
+      this.shapeLayers.forEach(layer => {
+        if (this.map.hasLayer(layer)) {
+          this.map.removeLayer(layer);
+        }
+      });
+
+      this.shapeLayers = shapes.map(shape => geoJSON(shape));
+      this.shapeLayers.forEach(layer => this.map.addLayer(layer));
     }
 }

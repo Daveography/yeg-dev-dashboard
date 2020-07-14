@@ -1,5 +1,6 @@
 import { ComponentFactoryResolver, ComponentRef, Injectable, Injector, ViewContainerRef } from '@angular/core';
 import { MapComponent } from '../map.component';
+import { MultiPolygon } from 'geojson';
 
 @Injectable()
 export class ReusableMapService {
@@ -26,6 +27,7 @@ export class ReusableMapService {
     viewContainerRef.detach(viewContainerRef.indexOf(this.componentRef.hostView));
   }
 
+  // TODO: Maybe find a single point to subscribe to MapReady...we might be leaking subscriptions
   public setMarker(latitude: number, longitude: number) {
     const mapComponent = this.componentRef.instance;
 
@@ -33,6 +35,17 @@ export class ReusableMapService {
     mapComponent.MapReady.subscribe(ready => {
       if (ready) {
         mapComponent.setMarker(latitude, longitude);
+      }
+    });
+  }
+
+  public setShapes(shapes: MultiPolygon[]) {
+    const mapComponent = this.componentRef.instance;
+
+    // Wait for map to load
+    mapComponent.MapReady.subscribe(ready => {
+      if (ready) {
+        mapComponent.setShapes(shapes);
       }
     });
   }

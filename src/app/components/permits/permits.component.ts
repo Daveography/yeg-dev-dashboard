@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
 import { catchError, finalize, map, share, tap } from 'rxjs/operators';
-import { FloatingTimestamp, Location } from 'soda-angular/datatypes';
+import { FloatingTimestamp } from 'soda-angular/datatypes';
+import { EdmontonCentreLocation } from 'src/app/models/edmonton-centre';
 import { Permit } from 'src/app/models/permit/permit';
 import { OdpToPermitService } from 'src/app/services/permit/odp-to-permit-service';
 import { OdpContext } from '../../models/edmonton-open-data/odp-context';
@@ -72,10 +73,8 @@ export class PermitsComponent implements OnInit {
 
   private getCentralBuildingPermits(since: FloatingTimestamp): Observable<Permit[]> {
 
-    const centralEdmonton: Location = new Location(53.534021, -113.501116);
-
     return this.context.buildingPermits
-      .whereLocation(p => p.location).withinCircle(centralEdmonton, 4000)
+      .whereLocation(p => p.location).withinCircle(EdmontonCentreLocation, 4000)
       .where(p => p.permit_date).greaterThan(since)
       .observable()
       .pipe(
