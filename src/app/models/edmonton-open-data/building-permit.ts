@@ -1,7 +1,8 @@
-import { FloatingTimestamp, Location } from 'soda-angular/datatypes';
+import { FloatingTimestamp, Location, SodaDataset } from 'soda-angular';
 
 // tslint:disable: variable-name
-export interface BuildingPermit {
+@SodaDataset('rwuh-apwg')
+export class BuildingPermit {
   row_id: string;
   issue_date: FloatingTimestamp;
   permit_number: string;

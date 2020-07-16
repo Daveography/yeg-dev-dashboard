@@ -1,7 +1,8 @@
-import { FloatingTimestamp, Location } from 'soda-angular/datatypes';
+import { FloatingTimestamp, Location, SodaDataset } from 'soda-angular';
 
 // tslint:disable: variable-name
-export interface DevelopmentPermit {
+@SodaDataset('8b78-2kux')
+export class DevelopmentPermit {
   city_file_number: string;
   permit_type: string;
   permit_class: string;

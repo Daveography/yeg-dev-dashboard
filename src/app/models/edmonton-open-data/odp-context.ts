@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SodaClient, SodaContext, SodaHost, SodaResource, SodaResourceId } from 'soda-angular';
+import { SodaClient, SodaContext, SodaHost, SodaResource } from 'soda-angular';
 import { BuildingPermit } from './building-permit';
 import { DevelopmentPermit } from './development-permit';
 import { LegalParcel } from './legal-parcel';
@@ -16,12 +16,11 @@ export class OdpContext extends SodaContext {
   public readonly titleParcels: SodaResource<TitleParcel>;
 
   constructor(sodaClient: SodaClient) {
-    super();
+    super(sodaClient);
 
-    // Hardcode for now; will make this more elegant later
-    this.developmentPermits = new SodaResource<DevelopmentPermit>(new SodaResourceId('8b78-2kux'), this, sodaClient);
-    this.buildingPermits = new SodaResource<BuildingPermit>(new SodaResourceId('rwuh-apwg'), this, sodaClient);
-    this.legalParcels = new SodaResource<LegalParcel>(new SodaResourceId('kk4c-7pcv'), this, sodaClient);
-    this.titleParcels = new SodaResource<TitleParcel>(new SodaResourceId('jabg-wnye'), this, sodaClient);
+    this.developmentPermits = new SodaResource(DevelopmentPermit, this);
+    this.buildingPermits = new SodaResource(BuildingPermit, this);
+    this.legalParcels = new SodaResource(LegalParcel, this);
+    this.titleParcels = new SodaResource(TitleParcel, this);
   }
 }

@@ -1,6 +1,8 @@
 import { MultiPolygon } from 'geojson';
+import { SodaDataset } from 'soda-angular';
 
-export interface TitleParcel {
+@SodaDataset('jabg-wnye')
+export class TitleParcel {
   id: number;
   latitude: number;
   longitude: number;

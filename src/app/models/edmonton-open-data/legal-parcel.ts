@@ -1,6 +1,8 @@
 import { MultiPolygon } from 'geojson';
+import { SodaDataset } from 'soda-angular';
 
-export interface LegalParcel {
+@SodaDataset('kk4c-7pcv')
+export class LegalParcel {
   id: number;
   latitude: number;
   longitude: number;
