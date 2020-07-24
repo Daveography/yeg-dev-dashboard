@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
+import { BehaviorSubject, forkJoin, MonoTypeOperatorFunction, Observable, of } from 'rxjs';
 import { catchError, finalize, map, share, tap } from 'rxjs/operators';
 import { FloatingTimestamp } from 'soda-angular/datatypes';
 import { EdmontonCentreLocation } from 'src/app/models/edmonton-centre';
@@ -39,12 +39,13 @@ export class PermitsComponent implements OnInit {
     this.Permits = forkJoin(
       this.getBuildingPermitsOver2Mil(last14Days),
       this.getCentralBuildingPermits(last14Days),
-      this.getMajorDevelopmentPermits(last14Days)
+      this.getMajorDevelopmentPermits(last14Days),
+      this.getHolyroodBuildingPermits(last14Days)
     )
     .pipe(
-      // TODO: Find a more elegant way to do this
-      map(([x, y, z]) => [...x, ...y, ...z]),
-      tap(permits => permits.sort((a, b) => b.Date.getTime() - a.Date.getTime())),
+      this.flatten(),
+      this.removeDuplicates(),
+      this.sortByDate(),
       finalize(() => this.loadingSubject.next(false)),
       share()
     );
@@ -83,6 +84,18 @@ export class PermitsComponent implements OnInit {
       );
   }
 
+  private getHolyroodBuildingPermits(since: FloatingTimestamp): Observable<Permit[]> {
+
+    return this.context.buildingPermits
+      .where(p => p.neighbourhood).equals('HOLYROOD')
+      .where(p => p.permit_date).greaterThan(since)
+      .observable()
+      .pipe(
+        map(dps => dps.map(permit => this.permitService.FromBuildingPermit(permit))),
+        catchError(() => of<Permit[]>([]))
+      );
+  }
+
   private getMajorDevelopmentPermits(since: FloatingTimestamp): Observable<Permit[]> {
     return this.context.developmentPermits
       .where(p => p.permit_type).equals('Major Development Permit')
@@ -92,5 +105,20 @@ export class PermitsComponent implements OnInit {
         map(dps => dps.map(permit => this.permitService.FromDevelopmentPermit(permit))),
         catchError(() => of<Permit[]>([]))
       );
+  }
+
+  private flatten() {
+    // TODO: Find a more elegant way to do this
+    return map(([w, x, y, z]) => [...w, ...x, ...y, ...z]);
+  }
+
+  private removeDuplicates(): MonoTypeOperatorFunction<Permit[]> {
+    return map(permits => permits.filter((item, index) =>
+      index === permits.findIndex(p => (p.Id === item.Id))
+    ));
+  }
+
+  private sortByDate(): MonoTypeOperatorFunction<Permit[]> {
+    return tap(permits => permits.sort((a, b) => b.Date.getTime() - a.Date.getTime()));
   }
 }
