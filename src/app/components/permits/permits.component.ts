@@ -64,7 +64,7 @@ export class PermitsComponent implements OnInit {
   private getBuildingPermitsOver2Mil(since: FloatingTimestamp): Observable<Permit[]> {
     return this.context.buildingPermits
       .where(p => p.construction_value).greaterThan(2000000)
-      .where(p => p.permit_date).greaterThan(since)
+      .and(p => p.permit_date).greaterThan(since)
       .observable()
       .pipe(
         map(dps => dps.map(permit => this.permitService.FromBuildingPermit(permit))),
@@ -75,8 +75,13 @@ export class PermitsComponent implements OnInit {
   private getCentralBuildingPermits(since: FloatingTimestamp): Observable<Permit[]> {
 
     return this.context.buildingPermits
-      .whereLocation(p => p.location).withinCircle(EdmontonCentreLocation, 4000)
-      .where(p => p.permit_date).greaterThan(since)
+      .location(p => p.location).withinCircle(EdmontonCentreLocation, 4000)
+      .and(p => p.permit_date).greaterThan(since)
+      .and(p => p.building_type).not().equals('Single House (110)')
+      .and(p => p.building_type).not().equals('Single Detached House (110)')
+      .and(p => p.building_type).not().equals('Semi-Detached House (210)')
+      .and(p => p.building_type).not().equals('Detached Garage (010)')
+      .and(p => p.building_type).not().equals('Shed (040)')
       .observable()
       .pipe(
         map(dps => dps.map(permit => this.permitService.FromBuildingPermit(permit))),
@@ -88,7 +93,7 @@ export class PermitsComponent implements OnInit {
 
     return this.context.buildingPermits
       .where(p => p.neighbourhood).equals('HOLYROOD')
-      .where(p => p.permit_date).greaterThan(since)
+      .and(p => p.permit_date).greaterThan(since)
       .observable()
       .pipe(
         map(dps => dps.map(permit => this.permitService.FromBuildingPermit(permit))),
@@ -99,7 +104,7 @@ export class PermitsComponent implements OnInit {
   private getMajorDevelopmentPermits(since: FloatingTimestamp): Observable<Permit[]> {
     return this.context.developmentPermits
       .where(p => p.permit_type).equals('Major Development Permit')
-      .where(p => p.permit_date).greaterThan(since)
+      .and(p => p.permit_date).greaterThan(since)
       .observable()
       .pipe(
         map(dps => dps.map(permit => this.permitService.FromDevelopmentPermit(permit))),

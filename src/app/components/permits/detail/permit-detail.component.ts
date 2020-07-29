@@ -41,11 +41,11 @@ export class PermitDetailComponent implements OnInit {
   private getShapes(): Observable<MultiPolygon[]> {
     return forkJoin(
       this.context.legalParcels
-        .whereGeometry(p => p.geometry)
+        .geometry(p => p.geometry)
         .intersects(GeoJSONUtils.point(this.Permit.Longitude, this.Permit.Latitude))
         .observable(),
       this.context.titleParcels
-        .whereGeometry(p => p.geometry)
+        .geometry(p => p.geometry)
         .intersects(GeoJSONUtils.point(this.Permit.Longitude, this.Permit.Latitude))
         .observable()
     )
