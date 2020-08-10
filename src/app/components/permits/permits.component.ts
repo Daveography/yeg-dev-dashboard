@@ -74,14 +74,18 @@ export class PermitsComponent implements OnInit {
 
   private getCentralBuildingPermits(since: FloatingTimestamp): Observable<Permit[]> {
 
+    const ignoreTypes = [
+      'Single House (110)',
+      'Single Detached House (110)',
+      'Semi-Detached House (210)',
+      'Detached Garage (010)',
+      'Shed (040)'
+    ];
+
     return this.context.buildingPermits
       .location(p => p.location).withinCircle(EdmontonCentreLocation, 4000)
       .and(p => p.permit_date).greaterThan(since)
-      .and(p => p.building_type).not().equals('Single House (110)')
-      .and(p => p.building_type).not().equals('Single Detached House (110)')
-      .and(p => p.building_type).not().equals('Semi-Detached House (210)')
-      .and(p => p.building_type).not().equals('Detached Garage (010)')
-      .and(p => p.building_type).not().equals('Shed (040)')
+      .and(p => p.building_type).notIn(...ignoreTypes)
       .observable()
       .pipe(
         map(dps => dps.map(permit => this.permitService.FromBuildingPermit(permit))),
