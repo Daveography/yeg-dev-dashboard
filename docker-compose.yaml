@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+
+  dashboard:
+    container_name: yeg-dev-dashboard
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: daveography/yeg-dev-dashboard
+    ports:
+      - '4201:80'

@@ -40,6 +40,13 @@
       "script": "test",
       "isBackground": true,
       "problemMatcher": []
+    },
+    {
+      "label": "Start in Container",
+      "type": "shell",
+      "command": "docker-compose up --build",
+      "isBackground": true,
+      "problemMatcher": []
     }
   ]
 }
